@@ -26,7 +26,7 @@ const objData = computed(() => {
   });
 });
 const type = ref('automatic');
-const name = ref('name');
+const name = ref('');
 const css = computed(() => {
   return objData ? `html[data-nu-scheme-is="light"][data-nu-contrast-is="low"] body {
 ${stylesString(convertToProps(name.value, objData.value[0]))}

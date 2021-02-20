@@ -12,7 +12,6 @@
 
 <script setup>
 import { computed, defineProps } from 'vue';
-import { THEME_TITLES } from '../helpers/colors';
 
 const props = defineProps({
   hue: Number,
@@ -28,6 +27,7 @@ const html = computed(() => {
 ></nu-theme>${
     props.accentHue != null ? `
 <nu-theme
+  name="secondary"
   hue="${props.hue}
   saturation="${props.saturation}"${props.pastel ? '\npastel' : ''}${props.mod ? `\nmod="${props.mod}"` : ''}
 ></nu-theme>

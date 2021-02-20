@@ -14,7 +14,7 @@
       :pastel="isPastel"
     />
     <nu-block width="max 120x" space="0 auto">
-      <nu-flow width="max 86x" gap="2x" padding="2x">
+      <nu-flow width="max 88x" gap="2x" padding="2x">
         <nu-flow gap="2x">
           <nu-pane>
             <nu-h1>CSS Theme Builder</nu-h1>
