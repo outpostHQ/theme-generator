@@ -23,7 +23,9 @@
         <nu-pane>
           <nu-input
             width="auto" grow="1"
-            :value="color" @input="setValue($event.detail)" :success="isValid || null">
+            :value="color"
+            @input="setValue($event.detail)" @keydown.enter="() => isValid && resolve()"
+            :success="isValid || null">
             <input ref="inputRef"/>
           </nu-input>
           <nu-card
