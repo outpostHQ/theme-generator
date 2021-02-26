@@ -13,21 +13,22 @@
       :saturation="saturation"
       :pastel="isPastel"
     />
-    <nu-block width="max 120x" space="0 auto">
-      <nu-flow width="max 88x" gap="2x" padding="2x">
+    <nu-block width="max 130x" space="0 auto">
+      <nu-flow width="max 90x" gap="2x" padding="2x">
         <nu-flow gap="2x">
           <nu-pane>
             <nu-h1>CSS Theme Builder</nu-h1>
             <nu-pane></nu-pane>
           </nu-pane>
-          <nu-flow size="h5" text="sb">
-            <nu-block>
+          <nu-flow text="sb">
+            <nu-block size="h5">
               CSS Generator • light/dark scheme • normal/high contrast
             </nu-block>
             <nu-block>
               Based on
               <nu-link to="!https://numl.design">Numl.Design</nu-link>
-              theme generator
+              theme generator by <nu-link to="!https://tenphi.me">@tenphi</nu-link> and
+              HSLuv color space by <nu-link to="!https://twitter.com/boronine">@boronine</nu-link>
             </nu-block>
           </nu-flow>
 
@@ -38,7 +39,7 @@
             <nu-tab value="duo">Duo tone</nu-tab>
           </nu-tablist>
 
-          <nu-grid columns="auto 1fr" gap="2x" items="center stretch">
+          <nu-grid columns="auto 1fr" gap="2x" items="center stretch" width="max 70x">
             <nu-pane flow="column" gap="2x">
               <nu-card
                 v-if="toneType === 'single'"
@@ -77,18 +78,26 @@
 
             <nu-flow gap>
               <nu-flow gap=".5x">
-                <nu-pane>
-                  <nu-label>{{ toneType === 'duo' ? 'Main ' : '' }}Hue:</nu-label>
-                  <nu-el text="b">
-                    {{ hue }}
-                  </nu-el>
+                <nu-pane content="space-between">
+                  <nu-pane>
+                    <nu-label>{{ toneType === 'duo' ? 'Main ' : '' }}Hue:</nu-label>
+                    <nu-numinput
+                      :value="hue"
+                      @input="hue = $event.detail"
+                      width="4x" padding="0 .5x"
+                      text="b"
+                    />
+                  </nu-pane>
+                  <nu-btn padding="0 .5x" clear @tap="insertColor()">
+                    insert
+                    <nu-icon name="color-palette-outline"/>
+                  </nu-btn>
                 </nu-pane>
                 <nu-slider
                   id="hue"
-                  :value="initialHue"
+                  :value="hue"
                   min="0"
                   max="359"
-                  width="max 60x"
                   @input="hue = $event.detail"
                   image="linear(to right, hue(0 s), hue(90 s), hue(180 s), hue(270 s), hue(0 s))"
                 >
@@ -96,18 +105,26 @@
               </nu-flow>
 
               <nu-flow v-if="toneType === 'duo'" gap=".5x">
-                <nu-pane>
-                  <nu-label>Accent Hue:</nu-label>
-                  <nu-el text="b">
-                    {{ accentHue }}
-                  </nu-el>
+                <nu-pane content="space-between">
+                  <nu-pane>
+                    <nu-label>Accent Hue:</nu-label>
+                    <nu-numinput
+                      :value="accentHue"
+                      @input="accentHue = $event.detail"
+                      width="4x" padding="0 .5x"
+                      text="b"
+                    />
+                  </nu-pane>
+                  <nu-btn padding="0 .5x" clear @tap="insertColor(true)">
+                    insert
+                    <nu-icon name="color-palette-outline"/>
+                  </nu-btn>
                 </nu-pane>
                 <nu-slider
                   id="hue"
-                  :value="initialAccentHue"
+                  :value="accentHue"
                   min="0"
                   max="359"
-                  width="max 60x"
                   @input="accentHue = $event.detail"
                   image="linear(to right, hue(0 s), hue(90 s), hue(180 s), hue(270 s), hue(0 s))"
                 >
@@ -117,15 +134,17 @@
               <nu-flow gap=".5x">
                 <nu-pane>
                   <nu-label>Saturation:</nu-label>
-                  <nu-el text="b">
-                    {{ saturation }}
-                  </nu-el>
+                  <nu-numinput
+                    :value="saturation"
+                    @input="saturation = $event.detail"
+                    width="4x" padding="0 .5x"
+                    text="b"
+                  />
                 </nu-pane>
                 <nu-slider
-                  :value="initialSaturation"
+                  :value="saturation"
                   min="0"
                   max="100"
-                  width="max 60x"
                   @input="saturation = $event.detail"
                   :image="`linear(to right, hue(${hue} 0 s), hue(${hue} 100 s))`"
                 />
@@ -199,15 +218,16 @@
 
         <nu-flow gap>
           <nu-attrs for="tab" text="sb nowrap"/>
-          <nu-tablist
-            border="bottom inside"
-            :value="outputTab"
-            @input="outputTab = $event.detail"
-          >
-            <nu-tab value="colors">Colors</nu-tab>
-            <nu-tab value="css">CSS</nu-tab>
-            <nu-tab value="numl">Numl</nu-tab>
-          </nu-tablist>
+          <nu-pane content="space-between" border="bottom inside">
+            <nu-tablist
+              :value="outputTab"
+              @input="outputTab = $event.detail"
+            >
+              <nu-tab value="colors">Colors</nu-tab>
+              <nu-tab value="css">CSS</nu-tab>
+              <nu-tab value="numl">Numl</nu-tab>
+            </nu-tablist>
+          </nu-pane>
 
           <ColorsOutput v-if="outputTab === 'colors'" :data="colorData"/>
           <CSSOutput v-if="outputTab === 'css'" :data="colorData"/>
@@ -234,9 +254,9 @@
             Stack:
             <nu-link to="!https://numl.design">Numl.Design</nu-link>
             &
-            <nu-link to="!https://vitejs.dev">Vite</nu-link>
+            <nu-link to="!https://vitejs.dev">Vite v2</nu-link>
             &
-            <nu-link to="!https://vuejs.org">Vue.js</nu-link>
+            <nu-link to="!https://vuejs.org">Vue v3</nu-link>
           </nu-block>
         </nu-pane>
       </nu-flow>
@@ -251,17 +271,19 @@
         />
       </Preview>
     </nu-block>
+    <ColorModal ref="colorModal" />
   </nu-root>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
-import { THEME_COLORS, MAIN_THEME_COLORS } from './helpers/colors';
+import { computed, ref, watch } from "vue";
+import { THEME_COLORS, MAIN_THEME_COLORS, rgbToHex } from './helpers/colors';
 import ColorsOutput from './components/ColorsOutput.vue';
 import CSSOutput from './components/CSSOutput.vue';
 import NumlOutput from './components/NumlOutput.vue';
 import Theme from './components/Theme.vue';
 import Preview from './components/Preview.vue';
+import ColorModal from './components/ColorModal.vue';
 
 const Nude = window.Nude;
 
@@ -274,6 +296,7 @@ const Nude = window.Nude;
 //   emphasizing: "normal",
 // };
 
+const colorModal = ref();
 const toneType = ref('single');
 
 const initialHue = 272;
@@ -361,17 +384,19 @@ function generateTheme({ darkScheme, highContrast }) {
 
       hsluv.forEach((val, i) => {
         if (i < 3) {
-          hsluv[i] = Math.round(val);
+          hsluv[i] = Math.round(val * 10) / 10;
         }
       });
 
       colors.push({
         name: key,
-        rawRgb: rgba,
+        rawRgba: rgba,
         rawHsluv: hsluv,
+        rgb: `rgb(${rgba[0]},${rgba[1]},${rgba[2]})`,
         rgba: `rgba(${rgba[0]},${rgba[1]},${rgba[2]},${rgba[3] || 1})`,
         hsluv: `hsluv(${hsluv[0]},${hsluv[1]},${hsluv[2]},${hsluv[3] || 1})`,
         numl: `#${key}`,
+        hex: rgbToHex(...rgba),
       });
 
       return colors;
@@ -390,4 +415,36 @@ const colorData = computed(() => {
 });
 
 const outputTab = ref("colors");
+
+watch(hue, () => {
+  if (hue.value < 0 || hue.value > 359) {
+    hue.value = 0;
+  }
+});
+watch(accentHue, () => {
+  if (accentHue.value < 0 || accentHue.value > 359) {
+    accentHue.value = 0;
+  }
+});
+watch(saturation, () => {
+  if (saturation.value < 0 || saturation.value > 100) {
+    saturation.value = 0;
+  }
+});
+
+function insertColor(isAccent) {
+  colorModal.value.open()
+    .then(({ hue: newHue, saturation: newSaturation }) => {
+      if (!isAccent) {
+        hue.value = newHue;
+        saturation.value = newSaturation;
+      } else {
+        accentHue.value = newHue;
+        saturation.value = newSaturation;
+      }
+    })
+    .catch(() => {
+      // do nothing
+    });
+}
 </script>

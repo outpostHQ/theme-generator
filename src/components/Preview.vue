@@ -22,7 +22,7 @@
 
     <nu-pane content="space-between">
       <nu-h5>Numl.Design elements</nu-h5>
-      <nu-link clear to="!https://numl.design/repl">Open REPL</nu-link>
+      <nu-link clear to="!https://numl.design/repl#6038e9246cd202483f3a87a4">Open REPL</nu-link>
     </nu-pane>
 
     <nu-pane>
@@ -132,6 +132,14 @@
     <nu-input placeholder="Placeholder"/>
 
     <nu-datepicker mode="range" />
+
+    <nu-card fill="#dark" color="#light">
+      Dark area
+    </nu-card>
+
+    <nu-card fill="#light" color="#dark">
+      Light area
+    </nu-card>
   </nu-card>
 </template>
 

@@ -1,4 +1,9 @@
 import { createApp } from 'vue';
+import { FocusTrap } from 'focus-trap-vue';
 import App from './App.vue';
 
-createApp(App).mount('#app');
+const app = createApp(App);
+
+app.component('FocusTrap', FocusTrap);
+
+app.mount('#app');
