@@ -5,11 +5,19 @@
       opacity="0 :open[1]"
       transition="opacity"
       interactive="n :open[y]"
-      place="fixed cover" fill="#black.50" z="top" radius="2r" shadow="#special-shadow">
-      <nu-card place="inside" width="max 80x" gap>
+      place="fixed cover"
+      fill="#black.50"
+      z="top"
+      radius="2r" shadow="#special-shadow">
+      <nu-card place="inside" width="max 40x" gap>
         <nu-heading level="4">Insert color:</nu-heading>
+        <nu-block>
+          You can insert any valid CSS-color: named, hex, rgb, rgba, hsl, etc...
+        </nu-block>
         <nu-pane>
-          <nu-input width="auto" :value="color" @input="setValue($event.detail)" :success="isValid || null">
+          <nu-input
+            width="auto" grow="1"
+            :value="color" @input="setValue($event.detail)" :success="isValid || null">
             <input ref="inputRef"/>
           </nu-input>
           <nu-card

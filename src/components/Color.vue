@@ -100,10 +100,12 @@ const TOOLTIP_MAP = {
     'highlight for of special elements',
   ],
   'light': [
-    'light areas',
+    'light area background',
+    'dark area text',
   ],
   'dark': [
-    'dark areas',
+    'dark area background',
+    'light area text',
   ],
 };
 

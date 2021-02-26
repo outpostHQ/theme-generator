@@ -17,7 +17,7 @@
       <nu-flow width="max 90x" gap="2x" padding="2x">
         <nu-flow gap="2x">
           <nu-pane>
-            <nu-h1>CSS Theme Builder</nu-h1>
+            <nu-h1 size="h2">Open Source CSS Theme Builder</nu-h1>
             <nu-pane></nu-pane>
           </nu-pane>
           <nu-flow text="sb">
@@ -84,7 +84,7 @@
                     <nu-numinput
                       :value="hue"
                       @input="hue = $event.detail"
-                      width="4x" padding="0 .5x"
+                      width="4.5x" padding="0 .5x"
                       text="b"
                     />
                   </nu-pane>
@@ -111,7 +111,7 @@
                     <nu-numinput
                       :value="accentHue"
                       @input="accentHue = $event.detail"
-                      width="4x" padding="0 .5x"
+                      width="4.5x" padding="0 .5x"
                       text="b"
                     />
                   </nu-pane>
@@ -137,7 +137,7 @@
                   <nu-numinput
                     :value="saturation"
                     @input="saturation = $event.detail"
-                    width="4x" padding="0 .5x"
+                    width="4.5x" padding="0 .5x"
                     text="b"
                   />
                 </nu-pane>

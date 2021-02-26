@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "deploy": "npm run build && mv ./dist/index.html ./dist/theme-builder.html && scp -rv ./dist/* cloud:/usr/share/nginx/numl.design/"
   },
   "dependencies": {
     "clipboard-copy": "^4.0.1",
