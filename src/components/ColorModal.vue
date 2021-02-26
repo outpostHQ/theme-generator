@@ -1,15 +1,21 @@
 <template>
   <focus-trap v-model="isOpen">
     <nu-block
+      nu-overlay
       :is-open="isOpen || null"
       opacity="0 :open[1]"
       transition="opacity"
       interactive="n :open[y]"
       place="fixed cover"
       fill="#black.50"
-      z="top"
-      radius="2r" shadow="#special-shadow">
-      <nu-card place="inside" width="max 40x" gap>
+      z="top">
+      <nu-card
+        place="inside" width="max 40x" gap
+        scale="^overlay .8 :open[1]"
+        move="^overlay 0 -6x :open[0 0]"
+        transition="move, scale, shadow"
+        radius="2r" shadow="^overlay 0 2x 6x #special-shadow.0 :open[0 2x 6x #special-shadow.50]"
+      >
         <nu-heading level="4">Insert color:</nu-heading>
         <nu-block>
           You can insert any valid CSS-color: named, hex, rgb, rgba, hsl, etc...
