@@ -106,8 +106,11 @@ export default {
         this.resolve = () => {
           const { hue, saturation } = this;
           const color = this.color;
+          this.isOpen = false
 
-          resolve({ hue, saturation });
+          setTimeout(() => {
+            resolve({ hue, saturation });
+          }, 300);
         };
         this.reject = reject;
       }).finally(() => this.isOpen = false);
