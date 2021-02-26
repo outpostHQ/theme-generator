@@ -21,8 +21,8 @@
             <nu-pane></nu-pane>
           </nu-pane>
           <nu-flow text="sb">
-            <nu-block size="h5">
-              CSS Generator • light/dark scheme • normal/high contrast
+            <nu-block size="h4">
+              css generator • light/dark scheme • normal/high contrast
             </nu-block>
             <nu-block>
               Based on
@@ -32,30 +32,29 @@
             </nu-block>
           </nu-flow>
 
-          <nu-h2> Options</nu-h2>
-
-          <nu-tablist :value="toneType" @input="toneType = $event.detail" border="bottom inside">
-            <nu-tab value="single">Single tone</nu-tab>
-            <nu-tab value="duo">Duo tone</nu-tab>
+          <nu-tablist
+            :value="section" @input="section = $event.detail"
+            border="bottom center 2bw" size="h3" text="sb">
+            <nu-tab value="colors">Colors</nu-tab>
+            <nu-tab value="properties">Properties</nu-tab>
           </nu-tablist>
 
-          <nu-grid columns="auto 1fr" gap="2x" items="center stretch" width="max 70x">
-            <nu-pane flow="column" gap="2x">
-              <nu-card
-                v-if="toneType === 'single'"
-                width="12x"
-                height="12x"
-                radius="2r"
-                shadow="#shadow"
-                clear
-                :fill="`hue(${hue} ${saturation} special ${
-                  isPastel ? 'pastel' : ''
-                })`"
-              />
-              <template v-else>
+          <nu-flow v-if="section === 'properties'">
+            <nu-h5>Coming soon...</nu-h5>
+          </nu-flow>
+
+          <nu-flow v-if="section === 'colors'" gap="2x">
+            <nu-tablist :value="toneType" @input="toneType = $event.detail" border="bottom inside">
+              <nu-tab value="single">Single tone</nu-tab>
+              <nu-tab value="duo">Duo tone</nu-tab>
+            </nu-tablist>
+
+            <nu-grid columns="auto 1fr" gap="2x" items="center stretch" width="max 70x">
+              <nu-pane flow="column" gap="2x">
                 <nu-card
-                  width="8x"
-                  height="8x"
+                  v-if="toneType === 'single'"
+                  width="12x"
+                  height="12x"
                   radius="2r"
                   shadow="#shadow"
                   clear
@@ -63,158 +62,170 @@
                     isPastel ? 'pastel' : ''
                   })`"
                 />
-                <nu-card
-                  width="8x"
-                  height="8x"
-                  radius="2r"
-                  shadow="#shadow"
-                  clear
-                  :fill="`hue(${accentHue} ${saturation} special ${
-                    isPastel ? 'pastel' : ''
-                  })`"
-                />
-              </template>
-            </nu-pane>
+                <template v-else>
+                  <nu-card
+                    width="8x"
+                    height="8x"
+                    radius="2r"
+                    shadow="#shadow"
+                    clear
+                    :fill="`hue(${hue} ${saturation} special ${
+                      isPastel ? 'pastel' : ''
+                    })`"
+                  />
+                  <nu-card
+                    width="8x"
+                    height="8x"
+                    radius="2r"
+                    shadow="#shadow"
+                    clear
+                    :fill="`hue(${accentHue} ${saturation} special ${
+                      isPastel ? 'pastel' : ''
+                    })`"
+                  />
+                </template>
+              </nu-pane>
 
-            <nu-flow gap>
-              <nu-flow gap=".5x">
-                <nu-pane content="space-between">
+              <nu-flow gap>
+                <nu-flow gap=".5x">
+                  <nu-pane content="space-between">
+                    <nu-pane>
+                      <nu-label>{{ toneType === 'duo' ? 'Main ' : '' }}Hue:</nu-label>
+                      <nu-numinput
+                        :value="hue"
+                        @input="hue = $event.detail"
+                        width="4.5x" padding="0 .5x"
+                        text="b"
+                      />
+                    </nu-pane>
+                    <nu-btn padding="0 .5x" clear @tap="insertColor()">
+                      insert
+                      <nu-icon name="color-palette-outline"/>
+                    </nu-btn>
+                  </nu-pane>
+                  <nu-slider
+                    id="hue"
+                    :value="hue"
+                    min="0"
+                    max="359"
+                    @input="hue = $event.detail"
+                    image="linear(to right, hue(0 s), hue(90 s), hue(180 s), hue(270 s), hue(0 s))"
+                  >
+                  </nu-slider>
+                </nu-flow>
+
+                <nu-flow v-if="toneType === 'duo'" gap=".5x">
+                  <nu-pane content="space-between">
+                    <nu-pane>
+                      <nu-label>Accent Hue:</nu-label>
+                      <nu-numinput
+                        :value="accentHue"
+                        @input="accentHue = $event.detail"
+                        width="4.5x" padding="0 .5x"
+                        text="b"
+                      />
+                    </nu-pane>
+                    <nu-btn padding="0 .5x" clear @tap="insertColor(true)">
+                      insert
+                      <nu-icon name="color-palette-outline"/>
+                    </nu-btn>
+                  </nu-pane>
+                  <nu-slider
+                    id="hue"
+                    :value="accentHue"
+                    min="0"
+                    max="359"
+                    @input="accentHue = $event.detail"
+                    image="linear(to right, hue(0 s), hue(90 s), hue(180 s), hue(270 s), hue(0 s))"
+                  >
+                  </nu-slider>
+                </nu-flow>
+
+                <nu-flow gap=".5x">
                   <nu-pane>
-                    <nu-label>{{ toneType === 'duo' ? 'Main ' : '' }}Hue:</nu-label>
+                    <nu-label>Saturation:</nu-label>
                     <nu-numinput
-                      :value="hue"
-                      @input="hue = $event.detail"
+                      :value="saturation"
+                      @input="saturation = $event.detail"
                       width="4.5x" padding="0 .5x"
                       text="b"
                     />
                   </nu-pane>
-                  <nu-btn padding="0 .5x" clear @tap="insertColor()">
-                    insert
-                    <nu-icon name="color-palette-outline"/>
-                  </nu-btn>
-                </nu-pane>
-                <nu-slider
-                  id="hue"
-                  :value="hue"
-                  min="0"
-                  max="359"
-                  @input="hue = $event.detail"
-                  image="linear(to right, hue(0 s), hue(90 s), hue(180 s), hue(270 s), hue(0 s))"
-                >
-                </nu-slider>
-              </nu-flow>
-
-              <nu-flow v-if="toneType === 'duo'" gap=".5x">
-                <nu-pane content="space-between">
-                  <nu-pane>
-                    <nu-label>Accent Hue:</nu-label>
-                    <nu-numinput
-                      :value="accentHue"
-                      @input="accentHue = $event.detail"
-                      width="4.5x" padding="0 .5x"
-                      text="b"
-                    />
-                  </nu-pane>
-                  <nu-btn padding="0 .5x" clear @tap="insertColor(true)">
-                    insert
-                    <nu-icon name="color-palette-outline"/>
-                  </nu-btn>
-                </nu-pane>
-                <nu-slider
-                  id="hue"
-                  :value="accentHue"
-                  min="0"
-                  max="359"
-                  @input="accentHue = $event.detail"
-                  image="linear(to right, hue(0 s), hue(90 s), hue(180 s), hue(270 s), hue(0 s))"
-                >
-                </nu-slider>
-              </nu-flow>
-
-              <nu-flow gap=".5x">
-                <nu-pane>
-                  <nu-label>Saturation:</nu-label>
-                  <nu-numinput
+                  <nu-slider
                     :value="saturation"
+                    min="0"
+                    max="100"
                     @input="saturation = $event.detail"
-                    width="4.5x" padding="0 .5x"
-                    text="b"
+                    :image="`linear(to right, hue(${hue} 0 s), hue(${hue} 100 s))`"
+                  />
+                </nu-flow>
+
+                <nu-pane>
+                  <nu-label>Use pastel palette:</nu-label>
+                  <nu-checkbox
+                    :checked="isPastel"
+                    @input="isPastel = $event.detail"
                   />
                 </nu-pane>
-                <nu-slider
-                  :value="saturation"
-                  min="0"
-                  max="100"
-                  @input="saturation = $event.detail"
-                  :image="`linear(to right, hue(${hue} 0 s), hue(${hue} 100 s))`"
-                />
               </nu-flow>
+            </nu-grid>
 
-              <nu-pane>
-                <nu-label>Use pastel palette:</nu-label>
-                <nu-checkbox
-                  :checked="isPastel"
-                  @input="isPastel = $event.detail"
-                />
-              </nu-pane>
-            </nu-flow>
-          </nu-grid>
+            <nu-pane>
+              <nu-attrs for="btn" padding=".5x 1.5x"/>
+              <nu-label>Type:</nu-label>
+              <nu-btngroup
+                use-radiogroup
+                :value="type"
+                @input="type = $event.detail"
+              >
+                <nu-btn value="main">Main</nu-btn>
+                <nu-btn value="tint">Tint</nu-btn>
+                <nu-btn value="tone">Tone</nu-btn>
+                <nu-btn value="swap">Swap</nu-btn>
+                <nu-btn value="special">Special</nu-btn>
+              </nu-btngroup>
+            </nu-pane>
 
-          <nu-pane>
-            <nu-attrs for="btn" padding=".5x 1.5x"/>
-            <nu-label>Type:</nu-label>
-            <nu-btngroup
-              use-radiogroup
-              :value="type"
-              @input="type = $event.detail"
-            >
-              <nu-btn value="main">Main</nu-btn>
-              <nu-btn value="tint">Tint</nu-btn>
-              <nu-btn value="tone">Tone</nu-btn>
-              <nu-btn value="swap">Swap</nu-btn>
-              <nu-btn value="special">Special</nu-btn>
-            </nu-btngroup>
-          </nu-pane>
+            <nu-pane>
+              <nu-attrs for="btn" padding=".5x 1.5x"/>
+              <nu-label>Contrast:</nu-label>
+              <nu-btngroup
+                use-radiogroup
+                :value="contrast"
+                @input="contrast = $event.detail"
+              >
+                <nu-btn value="soft">Soft</nu-btn>
+                <nu-btn value="normal">Normal</nu-btn>
+                <nu-btn value="strong">Strong</nu-btn>
+              </nu-btngroup>
+            </nu-pane>
 
-          <nu-pane>
-            <nu-attrs for="btn" padding=".5x 1.5x"/>
-            <nu-label>Contrast:</nu-label>
-            <nu-btngroup
-              use-radiogroup
-              :value="contrast"
-              @input="contrast = $event.detail"
-            >
-              <nu-btn value="soft">Soft</nu-btn>
-              <nu-btn value="normal">Normal</nu-btn>
-              <nu-btn value="strong">Strong</nu-btn>
-            </nu-btngroup>
-          </nu-pane>
-
-          <nu-pane flow="row wrap">
-            <nu-attrs for="btn" padding=".5x 1.5x"/>
-            <nu-label>Emphasizing:</nu-label>
-            <nu-btngroup
-              use-radiogroup
-              :value="emphasizing"
-              @input="emphasizing = $event.detail"
-              :disabled="disableEmphasizing"
-            >
-              <nu-btn value="dim">Dim</nu-btn>
-              <nu-btn value="normal">Normal</nu-btn>
-              <nu-btn value="bold">Bold</nu-btn>
-            </nu-btngroup>
-            <nu-block v-if="disableEmphasizing" size="sm">
-              <nu-icon name="alert-circle-outline"/>
-              Only for
-              <nu-strong>Tone</nu-strong>
-              and
-              <nu-strong>Swap</nu-strong>
-              types.
-            </nu-block>
-          </nu-pane>
+            <nu-pane flow="row wrap">
+              <nu-attrs for="btn" padding=".5x 1.5x"/>
+              <nu-label>Emphasizing:</nu-label>
+              <nu-btngroup
+                use-radiogroup
+                :value="emphasizing"
+                @input="emphasizing = $event.detail"
+                :disabled="disableEmphasizing"
+              >
+                <nu-btn value="dim">Dim</nu-btn>
+                <nu-btn value="normal">Normal</nu-btn>
+                <nu-btn value="bold">Bold</nu-btn>
+              </nu-btngroup>
+              <nu-block v-if="disableEmphasizing" size="sm">
+                <nu-icon name="alert-circle-outline"/>
+                Only for
+                <nu-strong>Tone</nu-strong>
+                and
+                <nu-strong>Swap</nu-strong>
+                types.
+              </nu-block>
+            </nu-pane>
+          </nu-flow>
         </nu-flow>
 
-        <nu-h2> Output</nu-h2>
+        <nu-h3>Output</nu-h3>
 
         <nu-flow gap>
           <nu-attrs for="tab" text="sb nowrap"/>
@@ -311,6 +322,8 @@ const type = ref("main");
 const isPastel = ref(false);
 const contrast = ref("normal");
 const emphasizing = ref("normal");
+
+const section = ref('colors');
 
 const disableEmphasizing = computed(() => {
   return (type.value !== "tone" && type.value !== "swap") || null;
