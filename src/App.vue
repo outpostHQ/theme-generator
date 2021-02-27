@@ -240,10 +240,10 @@
             </nu-tablist>
           </nu-pane>
 
-          <ColorsOutput v-if="outputTab === 'colors'" :data="colorData"/>
-          <CSSOutput v-if="outputTab === 'css'" :data="colorData"/>
+          <ColorsOutput v-show="outputTab === 'colors'" :data="colorData"/>
+          <CSSOutput v-show="outputTab === 'css'" :data="colorData"/>
           <NumlOutput
-            v-if="outputTab === 'numl'"
+            v-show="outputTab === 'numl'"
             :data="colorData"
             :hue="hue"
             :accentHue="toneType === 'duo' ? accentHue : null"
