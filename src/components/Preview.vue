@@ -8,12 +8,12 @@
     <nu-card
       :is-show="show || null"
       interactive="yes"
-      place="fixed right 0"
+      place="fixed right"
       radius="2r left"
       clear
       border="top left bottom"
       fill="subtle"
-      height="100vh - 4x"
+      height="100wh - 4x"
       width="41x||40x (100% - 6x) 78x"
       transition="move"
       move="0 0||100% 0 :show[0 0]"
@@ -161,7 +161,7 @@
 
       <nu-btn
         show="n||y"
-        place="outside-left top 8x 0"
+        place="outside-left top 3x 0"
         special
         padding
         radius="99x 0 0 99x"

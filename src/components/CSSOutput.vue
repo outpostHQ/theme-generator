@@ -53,7 +53,7 @@
       </nu-block>
     </nu-card>
 
-    <nu-pane gap="2x||1x" flow="row||column" items="stretch">
+    <nu-pane gap="2x||1x" flow="row|column" items="stretch">
       <nu-pane grow="1">
         <nu-label text="nowrap">
           Theme name
