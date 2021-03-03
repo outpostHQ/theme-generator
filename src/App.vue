@@ -97,7 +97,6 @@
                         :min="0"
                         :max="359"
                       />
-                      {{ hue }}
                     </nu-pane>
                     <nu-btn padding="0 .5x" clear @tap="insertColor()">
                       insert
