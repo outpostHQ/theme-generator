@@ -18,14 +18,16 @@
       >
         <nu-heading level="4">Insert color:</nu-heading>
         <nu-block>
-          You can insert any valid CSS-color: named, hex, rgb, rgba, hsl, etc...
+          You can insert any valid CSS-color: named, hex, rgb, rgba, hsl, etc.
         </nu-block>
         <nu-pane>
           <nu-input
             width="auto" grow="1"
             :value="color"
             @input="setValue($event.detail)" @keydown.enter="() => isValid && resolve()"
-            :success="isValid || null">
+            :success="isValid || null"
+            placeholder="red #f93 rgb(258,132,42)"
+          >
             <input ref="inputRef"/>
           </nu-input>
           <nu-card
@@ -40,6 +42,9 @@
             Saturation: {{ saturation != null && saturation === saturation ? saturation : '–' }}
           </nu-block>
         </nu-grid>
+        <nu-card warning padding=".5x 1x" size="sm" text="sb">
+          <b>Hue</b> and <b>Saturation</b> are calculated in <b>HSLuv</b> color space and can be very different from values of <b>HSL</b>.
+        </nu-card>
         <nu-grid columns="1pr 1pr" gap>
           <nu-btn special @tap="resolve" :disabled="!isValid">
             Submit

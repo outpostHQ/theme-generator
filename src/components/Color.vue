@@ -93,11 +93,11 @@ const TOOLTIP_MAP = {
   ],
   'special-shadow': [
     'shadow for special areas',
-    'shadow for of special elements',
+    'shadow for special elements',
   ],
   'special-mark': [
     'highlight for special areas',
-    'highlight for of special elements',
+    'highlight for special elements',
   ],
   'light': [
     'light area background',
