@@ -262,10 +262,19 @@
           items="flex-start stretch|center" text="left|center"
         >
           <nu-flow gap>
-            <nu-block>
+            <nu-pane>
+              <nu-attrs for="btn" clear padding radius="round" size="xs"/>
               Built by
               <nu-link to="!https://tenphi.me">Andrey Yamanov</nu-link>
-            </nu-block>
+              <nu-pane gap="0">
+                <nu-btn to="!https://twitter.com/tenphi">
+                  <nu-icon name="logo-twitter"/>
+                </nu-btn>
+                <nu-btn to="!https://github.com/tenphi">
+                  <nu-icon name="logo-github"/>
+                </nu-btn>
+              </nu-pane>
+            </nu-pane>
 
             <nu-block>
               Stack:
@@ -377,7 +386,7 @@ function getThemeConfig({ hue, darkScheme, highContrast }) {
     type: type.value,
     contrast: contrast.value,
     lightness: emphasizing.value,
-    pastel: isPastel,
+    pastel: isPastel.value,
     darkScheme,
     highContrast,
   };
