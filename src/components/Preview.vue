@@ -161,7 +161,7 @@
 
       <nu-btn
         show="n||y"
-        place="outside-left top 3x 0"
+        place="outside-left top 8x 0"
         special
         padding
         radius="99x 0 0 99x"
