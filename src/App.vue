@@ -29,8 +29,11 @@
             <nu-block>
               Based on
               <nu-link to="!https://numl.design">Numl.Design</nu-link>
-              theme generator by <nu-link to="!https://tenphi.me">@tenphi</nu-link> and
-              HSLuv color space by <nu-link to="!https://twitter.com/boronine">@boronine</nu-link>
+              theme generator
+              by <nu-link to="!https://tenphi.me">
+                @tenphi
+              </nu-link> and <nu-link to="!https://www.hsluv.org">HSLuv</nu-link> color
+              space by <nu-link to="!https://twitter.com/boronine">@boronine</nu-link>
             </nu-block>
           </nu-flow>
 
