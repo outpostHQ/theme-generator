@@ -1,6 +1,6 @@
 <template>
   <nu-flow gap>
-    <nu-pane content="space-between">
+    <nu-pane content="space-between" items="flex-end stretch">
       <nu-block>
         Insert this fragment of code into the element you want to declare theme in.
       </nu-block>

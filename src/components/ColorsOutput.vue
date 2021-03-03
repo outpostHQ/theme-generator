@@ -13,7 +13,7 @@
       </nu-btn>
     </nu-pane>
 
-    <nu-card fill="#white" color="#black" gap="4x">
+    <nu-card fill="#white" color="#black" gap="4x" padding="2x||1x">
       <slot></slot>
       <nu-attrs for="pane" text="sb"/>
 

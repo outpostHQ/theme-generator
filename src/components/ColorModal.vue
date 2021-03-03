@@ -10,7 +10,7 @@
       fill="#black.50"
       z="top">
       <nu-card
-        place="inside" width="max 40x" gap
+        place="inside" width="40x" gap="2x"
         scale="^overlay .8 :open[1]"
         move="^overlay 0 -6x :open[0 0]"
         transition="move, scale, shadow"

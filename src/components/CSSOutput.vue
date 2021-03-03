@@ -3,7 +3,7 @@
     <nu-attrs for="btn" padding="1x 2x" />
     <nu-pane content="space-between">
       <nu-pane gap="2x">
-        <nu-label>Switch by</nu-label>
+        <nu-label text="nowrap" t="Switch by|Switch"></nu-label>
         <nu-btngroup use-radiogroup :value="outputType" @input="outputType = $event.detail" inline>
           <nu-btn value="auto">CSS</nu-btn>
           <nu-btn value="manual">JS</nu-btn>
@@ -53,15 +53,15 @@
       </nu-block>
     </nu-card>
 
-    <nu-pane gap="2x">
+    <nu-pane gap="2x||1x" flow="row||column" items="stretch">
       <nu-pane grow="1">
-        <nu-label>
+        <nu-label text="nowrap">
           Theme name
         </nu-label>
         <nu-icon name="information-circle-outline" use-hover>
           <nu-tooltip width="30x">If you want to use several themes you can specify a name for each theme. It will be used as a prefix in color names.</nu-tooltip>
         </nu-icon>
-        <nu-input :value="name" @input="name = $event.detail" grow="1"/>
+        <nu-input :value="name" @input="name = $event.detail" grow="1" placeholder="primary"/>
       </nu-pane>
       <nu-pane grow="1">
         <nu-label>
@@ -70,7 +70,7 @@
         <nu-icon name="information-circle-outline" use-hover>
           <nu-tooltip width="30x">If you want to apply the theme to the specific element then use this field to provide a CSS selector for it.</nu-tooltip>
         </nu-icon>
-        <nu-input :value="selector" @input="selector = $event.detail" grow="1"/>
+        <nu-input :value="selector" @input="selector = $event.detail" grow="1" placeholder="#id"/>
       </nu-pane>
     </nu-pane>
     <nu-card fill="bg" v-if="objData" padding="0">

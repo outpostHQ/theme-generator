@@ -6,6 +6,7 @@
     overflow="no"
     width="max 100vw"
     color="text"
+    responsive="1050px|700px"
   >
     <Theme
       :hue="hue"
@@ -14,10 +15,10 @@
       :pastel="isPastel"
     />
     <nu-block width="max 130x" space="0 auto">
-      <nu-flow width="max 90x" gap="2x" padding="2x">
+      <nu-flow width="(100% - 42x)||100%" gap="2x" padding="2x">
         <nu-flow gap="1x">
           <nu-pane items="baseline start">
-            <nu-h1 size="h2">CSS Theme Builder</nu-h1>
+            <nu-h1 size="h2|h3">CSS Theme Builder</nu-h1>
             <nu-el size="lg" text="b">v1.0.0</nu-el>
           </nu-pane>
           <nu-flow text="sb">
@@ -34,7 +35,7 @@
 
           <nu-tablist
             :value="section" @input="section = $event.detail"
-            border="bottom center 2bw" size="h3" text="sb">
+            border="bottom center 2bw" size="h3|h4" text="sb">
             <nu-tab value="colors">Colors</nu-tab>
             <nu-tab value="properties">Properties</nu-tab>
           </nu-tablist>
@@ -255,7 +256,7 @@
 
         <nu-line/>
 
-        <nu-pane content="space-between">
+        <nu-pane content="space-between" flow="row||column">
           <nu-block>
             Built by
             <nu-link to="!https://tenphi.me">Andrey Yamanov</nu-link>
@@ -272,7 +273,7 @@
         </nu-pane>
       </nu-flow>
 
-      <Preview v-show="showPreview" :theme="{
+      <Preview :show="showPreview" v-show="themeIsReady" :theme="{
         hue,
         accentHue: toneType === 'duo' ? accentHue : null,
         saturation,
@@ -451,17 +452,18 @@ watch(saturation, () => {
   }
 });
 
-const showPreview = ref(true);
+const themeIsReady = ref(true);
+const showPreview = ref(false);
 
 let hideTimer;
 
 watch([hue, accentHue, saturation], () => {
   clearTimeout(hideTimer);
 
-  showPreview.value = false;
+  themeIsReady.value = false;
 
   hideTimer = setTimeout(() => {
-    showPreview.value = true;
+    themeIsReady.value = true;
   }, 500);
 });
 
