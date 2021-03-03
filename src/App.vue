@@ -15,10 +15,10 @@
     />
     <nu-block width="max 130x" space="0 auto">
       <nu-flow width="max 90x" gap="2x" padding="2x">
-        <nu-flow gap="2x">
-          <nu-pane>
+        <nu-flow gap="1x">
+          <nu-pane items="baseline start">
             <nu-h1 size="h2">CSS Theme Builder</nu-h1>
-            <nu-pane></nu-pane>
+            <nu-el size="lg" text="b">v1.0.0</nu-el>
           </nu-pane>
           <nu-flow text="sb">
             <nu-block size="h4">
