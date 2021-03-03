@@ -23,6 +23,7 @@
           </nu-pane>
           <nu-flow text="sb">
             <nu-block size="h4">
+              <nu-icon name="logo-github" size="1em"/>
               open source • light/dark scheme • normal/high contrast
             </nu-block>
             <nu-block>
@@ -256,19 +257,31 @@
 
         <nu-line/>
 
-        <nu-pane content="space-between" flow="row||column">
-          <nu-block>
-            Built by
-            <nu-link to="!https://tenphi.me">Andrey Yamanov</nu-link>
-          </nu-block>
+        <nu-pane
+          content="space-between" flow="row|column"
+          items="flex-start stretch|center" text="left|center"
+        >
+          <nu-flow gap>
+            <nu-block>
+              Built by
+              <nu-link to="!https://tenphi.me">Andrey Yamanov</nu-link>
+            </nu-block>
+
+            <nu-block>
+              Stack:
+              <nu-link to="!https://numl.design">Numl.Design</nu-link>
+              &
+              <nu-link to="!https://vitejs.dev">Vite v2</nu-link>
+              &
+              <nu-link to="!https://vuejs.org">Vue v3</nu-link>
+            </nu-block>
+          </nu-flow>
 
           <nu-block>
-            Stack:
-            <nu-link to="!https://numl.design">Numl.Design</nu-link>
-            &
-            <nu-link to="!https://vitejs.dev">Vite v2</nu-link>
-            &
-            <nu-link to="!https://vuejs.org">Vue v3</nu-link>
+            <nu-btn clear to="!https://github.com/numldesign/theme-builder">
+              <nu-icon name="logo-github"/>
+              Source Code
+            </nu-btn>
           </nu-block>
         </nu-pane>
       </nu-flow>
