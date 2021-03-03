@@ -3,7 +3,7 @@
     <nu-attrs for="btn" padding="1x 2x" />
     <nu-pane content="space-between">
       <nu-pane gap="2x">
-        <nu-label text="nowrap" t="Switch by|Switch"></nu-label>
+        <nu-label text="nowrap" t="'Switch by'||'Switch'"></nu-label>
         <nu-btngroup use-radiogroup :value="outputType" @input="outputType = $event.detail" inline>
           <nu-btn value="auto">CSS</nu-btn>
           <nu-btn value="manual">JS</nu-btn>

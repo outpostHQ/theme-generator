@@ -274,11 +274,11 @@
       </nu-flow>
 
       <Preview :show="showPreview" v-show="themeIsReady" :theme="{
-        hue,
+        hue: hue,
         accentHue: toneType === 'duo' ? accentHue : null,
-        saturation,
+        saturation: saturation,
         pastel: isPastel,
-        mod,
+        mod: mod,
       }"/>
     </nu-block>
     <ColorModal ref="colorModal" />

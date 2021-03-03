@@ -22,11 +22,11 @@
       z="0"
     >
       <Theme
-        :hue="props.hue"
-        :accentHue="props.accentHue"
-        :saturation="props.saturation"
-        :pastel="props.pastel"
-        :mod="props.mod"
+        :hue="props.theme.hue"
+        :accentHue="props.theme.accentHue"
+        :saturation="props.theme.saturation"
+        :pastel="props.theme.pastel"
+        :mod="props.theme.mod"
       />
       <nu-flow>
         <nu-pane content="space-between">
