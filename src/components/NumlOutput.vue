@@ -28,6 +28,7 @@
 <script setup>
 import { computed, defineProps, ref } from 'vue';
 import copy from 'clipboard-copy';
+import { convertThemeToMarkup } from '../helpers/nude';
 
 const props = defineProps({
   hue: Number,
@@ -37,28 +38,7 @@ const props = defineProps({
   mod: String,
 });
 const html = computed(() => {
-  return `<nu-theme
-  hue="${props.accentHue != null ? props.accentHue : props.hue}"
-  saturation="${props.saturation}"${props.pastel ? '\npastel' : ''}${props.mod ? `\nmod="${props.mod}"` : ''}
-></nu-theme>${
-    props.accentHue != null ? `
-<nu-theme
-  name="secondary"
-  hue="${props.hue}
-  saturation="${props.saturation}"${props.pastel ? '\npastel' : ''}${props.mod ? `\nmod="${props.mod}"` : ''}
-></nu-theme>
-<nu-props
-  bg-color="#secondary-bg"
-  text-color="#secondary-text"
-  text-soft-color="#secondary-text-soft"
-  text-strong-color="#secondary-text-strong"
-  subtle-color="#secondary-subtle"
-  shadow-color="#secondary-shadow"
-  border-color="#secondary-border"
-  special-shadow-color="#secondary-special-shadow"
-></nu-props>` : ''}`
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+  return convertThemeToMarkup(props, true);
 });
 
 const copied = ref(false);

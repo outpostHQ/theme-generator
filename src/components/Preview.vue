@@ -11,7 +11,13 @@
     gap="2x"
     padding="0 2x 2x 2x"
   >
-    <slot></slot>
+    <Theme
+      :hue="props.hue"
+      :accentHue="props.accentHue"
+      :saturation="props.saturation"
+      :pastel="props.pastel"
+      :mod="props.mod"
+    />
     <nu-flow place="sticky top" fill="subtle" z="front" gap padding="2x 2x 0 2x" space="0 2x">
       <nu-pane content="space-between">
         <nu-h2>Preview</nu-h2>
@@ -22,7 +28,7 @@
 
     <nu-pane content="space-between">
       <nu-h5>Numl.Design elements</nu-h5>
-      <nu-link clear to="!https://numl.design/repl#6038e9246cd202483f3a87a4">Open REPL</nu-link>
+      <nu-link clear :to="replLink">Open REPL</nu-link>
     </nu-pane>
 
     <nu-pane>
@@ -144,5 +150,26 @@
 </template>
 
 <script setup>
+import { defineProps, computed } from 'vue';
+import LZString from 'lz-string';
 import ThemeSwitch from './ThemeSwitch.vue';
+import Theme from './Theme.vue';
+import { convertThemeToMarkup } from '../helpers/nude';
+import replMarkup from '../data/repl-markup';
+
+const props = defineProps({
+  theme: Object,
+});
+const themeMarkup = computed(() => {
+  return convertThemeToMarkup(props.theme);
+});
+const replHash = computed(() => {
+  return LZString.compressToEncodedURIComponent(
+    JSON.stringify({
+      markup: replMarkup(themeMarkup.value),
+    }),
+  );
+});
+// Original: https://numl.design/repl#6038e9246cd202483f3a87a4
+const replLink = computed(() => `!https://numl.design/repl#${replHash.value}`);
 </script>

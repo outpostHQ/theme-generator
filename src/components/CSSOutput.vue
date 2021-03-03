@@ -3,9 +3,10 @@
     <nu-attrs for="btn" padding="1x 2x" />
     <nu-pane content="space-between">
       <nu-pane gap="2x">
+        <nu-label>Switch by</nu-label>
         <nu-btngroup use-radiogroup :value="outputType" @input="outputType = $event.detail" inline>
-          <nu-btn value="auto">Auto</nu-btn>
-          <nu-btn value="manual">Manual</nu-btn>
+          <nu-btn value="auto">CSS</nu-btn>
+          <nu-btn value="manual">JS</nu-btn>
         </nu-btngroup>
       </nu-pane>
       <nu-pane>
@@ -30,7 +31,7 @@
 
     <nu-card v-if="outputType === 'manual'" padding="1x 2x" warning gap=".5x">
       <nu-block>
-        The <b>Manual</b> declaration <nu-el text="u">requires a script</nu-el> to be added to the page. Download it here <nu-icon name="arrow-forward-outline" rotate="-45deg"/>
+        The <b>Switch by JS</b> declaration <nu-el text="u">requires a script</nu-el> to be used. Download it here <nu-icon name="arrow-forward-outline" rotate="-45deg"/>
       </nu-block>
       <nu-block>
         Add <nu-cd>nu-scheme="dark"</nu-cd> or <nu-cd>nu-scheme="light"</nu-cd> attribute to the <nu-cd>&lt;html/&gt;</nu-cd> element to force specific scheme.
@@ -42,7 +43,7 @@
 
     <nu-card v-if="outputType === 'auto'" padding="1x 2x" warning gap=".5x">
       <nu-block>
-        The <b>Auto</b> declaration uses <nu-link to="!https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">CSS Media Queries</nu-link> to adapt the theme to system preferences.
+        The <b>Switch by CSS</b> declaration uses <nu-link to="!https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">CSS Media Queries</nu-link> to adapt the theme to system preferences.
       </nu-block>
       <nu-block>
         <b>Note:</b> CSS Media Query <nu-cd>prefers-contrast</nu-cd> is an experimental feature and currently <nu-el text="u">is not supported by any browser</nu-el>.

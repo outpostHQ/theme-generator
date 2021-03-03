@@ -17,12 +17,12 @@
       <nu-flow width="max 90x" gap="2x" padding="2x">
         <nu-flow gap="2x">
           <nu-pane>
-            <nu-h1 size="h2">Open Source CSS Theme Builder</nu-h1>
+            <nu-h1 size="h2">CSS Theme Builder</nu-h1>
             <nu-pane></nu-pane>
           </nu-pane>
           <nu-flow text="sb">
             <nu-block size="h4">
-              css generator • light/dark scheme • normal/high contrast
+              open source • light/dark scheme • normal/high contrast
             </nu-block>
             <nu-block>
               Based on
@@ -39,11 +39,11 @@
             <nu-tab value="properties">Properties</nu-tab>
           </nu-tablist>
 
-          <nu-flow v-if="section === 'properties'">
+          <nu-flow v-show="section === 'properties'">
             <nu-h5>Coming soon...</nu-h5>
           </nu-flow>
 
-          <nu-flow v-if="section === 'colors'" gap="2x">
+          <nu-flow v-show="section === 'colors'" gap="2x">
             <nu-tablist :value="toneType" @input="toneType = $event.detail" border="bottom inside">
               <nu-tab value="single">Single tone</nu-tab>
               <nu-tab value="duo">Duo tone</nu-tab>
@@ -52,7 +52,7 @@
             <nu-grid columns="auto 1fr" gap="2x" items="center stretch" width="max 70x">
               <nu-pane flow="column" gap="2x">
                 <nu-card
-                  v-if="toneType === 'single'"
+                  v-show="toneType === 'single'"
                   width="12x"
                   height="12x"
                   radius="2r"
@@ -62,7 +62,7 @@
                     isPastel ? 'pastel' : ''
                   })`"
                 />
-                <template v-else>
+                <template v-if="toneType === 'duo'">
                   <nu-card
                     width="8x"
                     height="8x"
@@ -91,12 +91,13 @@
                   <nu-pane content="space-between">
                     <nu-pane>
                       <nu-label>{{ toneType === 'duo' ? 'Main ' : '' }}Hue:</nu-label>
-                      <nu-numinput
+                      <NumInput
                         :value="hue"
-                        @input="hue = $event.detail"
-                        width="4.5x" padding="0 .5x"
-                        text="b"
+                        @input="hue = $event"
+                        :min="0"
+                        :max="359"
                       />
+                      {{ hue }}
                     </nu-pane>
                     <nu-btn padding="0 .5x" clear @tap="insertColor()">
                       insert
@@ -114,15 +115,15 @@
                   </nu-slider>
                 </nu-flow>
 
-                <nu-flow v-if="toneType === 'duo'" gap=".5x">
+                <nu-flow v-show="toneType === 'duo'" gap=".5x">
                   <nu-pane content="space-between">
                     <nu-pane>
                       <nu-label>Accent Hue:</nu-label>
-                      <nu-numinput
+                      <NumInput
                         :value="accentHue"
-                        @input="accentHue = $event.detail"
-                        width="4.5x" padding="0 .5x"
-                        text="b"
+                        @input="accentHue = $event"
+                        :min="0"
+                        :max="359"
                       />
                     </nu-pane>
                     <nu-btn padding="0 .5x" clear @tap="insertColor(true)">
@@ -144,11 +145,9 @@
                 <nu-flow gap=".5x">
                   <nu-pane>
                     <nu-label>Saturation:</nu-label>
-                    <nu-numinput
+                    <NumInput
                       :value="saturation"
-                      @input="saturation = $event.detail"
-                      width="4.5x" padding="0 .5x"
-                      text="b"
+                      @input="saturation = $event"
                     />
                   </nu-pane>
                   <nu-slider
@@ -213,7 +212,7 @@
                 <nu-btn value="normal">Normal</nu-btn>
                 <nu-btn value="bold">Bold</nu-btn>
               </nu-btngroup>
-              <nu-block v-if="disableEmphasizing" size="sm">
+              <nu-block v-show="disableEmphasizing" size="sm">
                 <nu-icon name="alert-circle-outline"/>
                 Only for
                 <nu-strong>Tone</nu-strong>
@@ -227,15 +226,17 @@
 
         <nu-h3>Output</nu-h3>
 
-        <nu-flow gap>
+        <nu-progressbar v-if="loading" />
+
+        <nu-flow v-else gap>
           <nu-attrs for="tab" text="sb nowrap"/>
           <nu-pane content="space-between" border="bottom inside">
             <nu-tablist
               :value="outputTab"
               @input="outputTab = $event.detail"
             >
-              <nu-tab value="colors">Colors</nu-tab>
               <nu-tab value="css">CSS</nu-tab>
+              <nu-tab value="colors">Colors</nu-tab>
               <nu-tab value="numl">Numl</nu-tab>
             </nu-tablist>
           </nu-pane>
@@ -272,29 +273,29 @@
         </nu-pane>
       </nu-flow>
 
-      <Preview>
-        <Theme
-          :hue="hue"
-          :accentHue="toneType === 'duo' ? accentHue : null"
-          :saturation="saturation"
-          :pastel="isPastel"
-          :mod="mod"
-        />
-      </Preview>
+      <Preview v-show="showPreview" :theme="{
+        hue,
+        accentHue: toneType === 'duo' ? accentHue : null,
+        saturation,
+        pastel: isPastel,
+        mod,
+      }"/>
     </nu-block>
     <ColorModal ref="colorModal" />
   </nu-root>
 </template>
 
 <script setup>
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch, onMounted } from "vue";
 import { THEME_COLORS, MAIN_THEME_COLORS, rgbToHex } from './helpers/colors';
+import { convertThemeToMarkup } from './helpers/nude';
 import ColorsOutput from './components/ColorsOutput.vue';
 import CSSOutput from './components/CSSOutput.vue';
 import NumlOutput from './components/NumlOutput.vue';
 import Theme from './components/Theme.vue';
 import Preview from './components/Preview.vue';
 import ColorModal from './components/ColorModal.vue';
+import NumInput from './components/NumInput.vue';
 
 const Nude = window.Nude;
 
@@ -307,15 +308,21 @@ const Nude = window.Nude;
 //   emphasizing: "normal",
 // };
 
+const loading = ref(true);
+
+onMounted(() => {
+  setTimeout(() => loading.value = false, 1000);
+});
+
 const colorModal = ref();
 const toneType = ref('single');
 
-const initialHue = 272;
+const initialHue = 242;
 const hue = ref(initialHue);
-const initialAccentHue = 30;
+const initialAccentHue = 0;
 const accentHue = ref(initialAccentHue);
 
-const initialSaturation = 70;
+const initialSaturation = 75;
 const saturation = ref(initialSaturation);
 
 const type = ref("main");
@@ -427,7 +434,7 @@ const colorData = computed(() => {
   return data;
 });
 
-const outputTab = ref("colors");
+const outputTab = ref("css");
 
 watch(hue, () => {
   if (hue.value < 0 || hue.value > 359) {
@@ -443,6 +450,20 @@ watch(saturation, () => {
   if (saturation.value < 0 || saturation.value > 100) {
     saturation.value = 0;
   }
+});
+
+const showPreview = ref(true);
+
+let hideTimer;
+
+watch([hue, accentHue, saturation], () => {
+  clearTimeout(hideTimer);
+
+  showPreview.value = false;
+
+  hideTimer = setTimeout(() => {
+    showPreview.value = true;
+  }, 500);
 });
 
 function insertColor(isAccent) {

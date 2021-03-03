@@ -11,7 +11,7 @@
     <nu-btn
       clear
       id="contrast" toggle label="Contrast mode"
-      control=":root[data-nu-contrast]" value="high" off-value="low">
+      control=":root[data-nu-contrast]" value="more" off-value="no-preference">
       <nu-icon name="contrast-outline"></nu-icon>
       <nu-tooltip>Change contrast</nu-tooltip>
     </nu-btn>
