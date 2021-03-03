@@ -1,5 +1,5 @@
 export default themeMarkup => `<nu-card
-  radius="2r left"
+  radius="2r"
   fill="subtle"
   gap="2x"
   clear
