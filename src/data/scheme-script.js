@@ -2,8 +2,8 @@ export default `;(function () {
   const ROOT = document.querySelector(':root');
   const DARK = 'dark';
   const LIGHT = 'light';
-  const HIGH = 'high';
-  const LOW = 'low';
+  const HIGH = 'more';
+  const LOW = 'no-preference';
   const SCHEMES = [DARK, LIGHT];
   const CONTRASTS = [HIGH, LOW];
 
@@ -15,7 +15,7 @@ export default `;(function () {
   }
 
   const schemeMedia = matchMedia('(prefers-color-scheme: dark)');
-  const contrastMedia = matchMedia('(prefers-contrast: high)');
+  const contrastMedia = matchMedia('(prefers-contrast: more)');
 
   let globalScheme = schemeMedia.matches ? DARK : LIGHT;
   let globalContrast = contrastMedia.matches ? HIGH : LOW;
@@ -59,7 +59,7 @@ export default `;(function () {
   setContrast();
 
   // Switch to dark scheme
-  // ROOT.dataset.nuContrast = 'high';
+  // ROOT.dataset.nuContrast = 'more';
   // Increase contrast
   // ROOT.dataset.nuScheme = 'dark';
 })();

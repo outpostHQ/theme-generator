@@ -37,7 +37,7 @@
         Add <nu-cd>nu-scheme="dark"</nu-cd> or <nu-cd>nu-scheme="light"</nu-cd> attribute to the <nu-cd>&lt;html/&gt;</nu-cd> element to force specific scheme.
       </nu-block>
       <nu-block>
-        Add <nu-cd>nu-contrast="high"</nu-cd> attribute to the <nu-cd>&lt;html/&gt;</nu-cd> element to force increased contrast mode.
+        Add <nu-cd>nu-contrast="more"</nu-cd> attribute to the <nu-cd>&lt;html/&gt;</nu-cd> element to force increased contrast mode.
       </nu-block>
     </nu-card>
 
@@ -110,19 +110,19 @@ const css = computed(() => {
   const sel = selector.value || (outputType.value === 'manual' ? 'body' : ':root');
 
   if (outputType.value === 'manual') {
-    return objData ? `html[data-nu-scheme-is="light"][data-nu-contrast-is="low"] ${sel} {
+    return objData ? `html[data-nu-scheme-is="light"][data-nu-contrast-is="no-preference"] ${sel} {
 ${stylesString(convertToProps(name.value, objData.value[0]), 1)}
 }
 
-html[data-nu-scheme-is="dark"][data-nu-contrast-is="low"] ${sel} {
+html[data-nu-scheme-is="dark"][data-nu-contrast-is="no-preference"] ${sel} {
 ${stylesString(convertToProps(name.value, objData.value[1]), 1)}
 }
 
-html[data-nu-scheme-is="light"][data-nu-contrast-is="high"] ${sel} {
+html[data-nu-scheme-is="light"][data-nu-contrast-is="more"] ${sel} {
 ${stylesString(convertToProps(name.value, objData.value[2]), 1)}
 }
 
-html[data-nu-scheme-is="dark"][data-nu-contrast-is="high"] ${sel} {
+html[data-nu-scheme-is="dark"][data-nu-contrast-is="more"] ${sel} {
 ${stylesString(convertToProps(name.value, objData.value[3]), 1)}
 }` : '';
   } else {
