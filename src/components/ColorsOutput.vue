@@ -30,7 +30,7 @@
             width="max 100%"
             text="nowrap"
           >
-            <Color v-for="color in theme" :data="color" :notation="notation"/>
+            <Color v-for="color in theme" :data="color" :index="index" :notation="notation"/>
           </nu-grid>
         </nu-flow>
       </template>
@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from 'vue';
+import { computed, defineProps, ref } from 'vue';
 import saveAs from 'file-saver';
 import { THEME_TITLES } from '../helpers/colors';
 import Color from './Color.vue';

@@ -1,5 +1,6 @@
 <template>
   <nu-root
+    id="root"
     font="Baloo 2"
     fill="subtle"
     height="min 100vh"
@@ -7,6 +8,7 @@
     width="max 100vw"
     color="text"
     responsive="1050px|700px"
+    :style="styles"
   >
     <Theme
       :hue="hue"
@@ -245,10 +247,10 @@
             </nu-tablist>
           </nu-pane>
 
-          <ColorsOutput v-show="outputTab === 'colors'" :data="colorData"/>
-          <CSSOutput v-show="outputTab === 'css'" :data="colorData"/>
+          <ColorsOutput v-if="outputTab === 'colors'" :data="colorData"/>
+          <CSSOutput v-if="outputTab === 'css'" :data="colorData"/>
           <NumlOutput
-            v-show="outputTab === 'numl'"
+            v-if="outputTab === 'numl'"
             :data="colorData"
             :hue="hue"
             :accentHue="toneType === 'duo' ? accentHue : null"
@@ -281,10 +283,8 @@
 
             <nu-block>
               Stack:
-              <nu-link to="!https://numl.design">Numl.Design</nu-link>
-              &
-              <nu-link to="!https://vitejs.dev">Vite v2</nu-link>
-              &
+              <nu-link to="!https://numl.design">Numl.Design</nu-link>,
+              <nu-link to="!https://vitejs.dev">Vite v2</nu-link>,
               <nu-link to="!https://vuejs.org">Vue v3</nu-link>
             </nu-block>
           </nu-flow>
@@ -298,7 +298,7 @@
         </nu-pane>
       </nu-flow>
 
-      <Preview :show="showPreview" v-show="themeIsReady" :theme="{
+      <Preview v-show="themeIsReady" :theme="{
         hue: hue,
         accentHue: toneType === 'duo' ? accentHue : null,
         saturation: saturation,
@@ -312,6 +312,7 @@
 
 <script setup>
 import { computed, ref, watch, onMounted } from "vue";
+import { setFavIcon } from './services/favicon';
 import { THEME_COLORS, MAIN_THEME_COLORS, rgbToHex } from './helpers/colors';
 import { convertThemeToMarkup } from './helpers/nude';
 import ColorsOutput from './components/ColorsOutput.vue';
@@ -333,10 +334,22 @@ const Nude = window.Nude;
 //   emphasizing: "normal",
 // };
 
+const ROOT = document.documentElement;
+
+ROOT.dataset.nuReducedMotion = '';
+
 const loading = ref(true);
 
 onMounted(() => {
+  updateFavIcon();
+
   setTimeout(() => loading.value = false, 1000);
+});
+
+watch(loading, () => {
+  if (!loading.value) {
+    delete ROOT.dataset.nuReducedMotion;
+  }
 });
 
 const colorModal = ref();
@@ -478,18 +491,37 @@ watch(saturation, () => {
 });
 
 const themeIsReady = ref(true);
-const showPreview = ref(false);
 
 let hideTimer;
+
+function updateFavIcon() {
+  const mainHue = toneType.value === 'duo' ? accentHue : hue;
+
+  setFavIcon(Nude.hue(`${mainHue.value} ${saturation.value}`, ROOT.dataset.nuSchemeIs === 'dark'));
+}
+
+watch([hue, accentHue, saturation, toneType], updateFavIcon);
 
 watch([hue, accentHue, saturation], () => {
   clearTimeout(hideTimer);
 
   themeIsReady.value = false;
 
+  updateFavIcon();
+
   hideTimer = setTimeout(() => {
     themeIsReady.value = true;
   }, 500);
+});
+
+watch(themeIsReady, () => {
+  if (themeIsReady.value) {
+    setTimeout(() => {
+      delete ROOT.dataset.nuReducedMotion;
+    });
+  } else {
+    ROOT.dataset.nuReducedMotion = '';
+  }
 });
 
 function insertColor(isAccent) {
@@ -507,4 +539,18 @@ function insertColor(isAccent) {
       // do nothing
     });
 }
+
+const styles = computed(() => {
+  let stls = '';
+
+  colorData.value.forEach((theme, index) => {
+    theme.forEach(color => {
+      stls += `--${color.name}-color${index}: ${color.rgba};`;
+      stls += `--${color.name}-color-opaque${index}: ${color.rgb};`;
+      stls += `--${color.name}-color-rgb${index}: ${color.rawRgba.slice(0, 3).join(',')};`;
+    });
+  });
+
+  return stls;
+});
 </script>

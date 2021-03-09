@@ -2,10 +2,10 @@
 <html lang="en" data-nu-icons="ion">
 <head>
   <meta charset="UTF-8"/>
-  <link rel="icon" href="/favicon.ico"/>
+  <link rel="icon" href="/favicon.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script type="module" src="https://cdn.skypack.dev/numl@1.0.0-beta.21"></script>
-  <!--    <script type="module" src="/numl/index.js"></script>-->
+  <script type="module" src="https://cdn.skypack.dev/numl@1.0.0-beta.22"></script>
+<!--  <script type="module" src="/numl/index.js"></script>-->
   <title>CSS Theme Builder by Numl.Design</title>
 
   <meta itemprop="name" content="CSS Theme Builder by Numl.Design">
@@ -31,6 +31,129 @@
   <meta property="og:site_name" content="numl.design"/>
   <meta property="og:url" content="https://numl.design/"/>
 
+  <style>
+  html[data-nu-scheme-is="light"][data-nu-contrast-is="no-preference"] #preview {
+    --bg-color: var(--bg-color0);
+    --text-color: var(--text-color0);
+    --text-soft-color: var(--text-soft-color0);
+    --text-strong-color: var(--text-strong-color0);
+    --subtle-color: var(--subtle-color0);
+    --border-color: var(--border-color0);
+    --shadow-color: var(--shadow-color0);
+    --input-color: var(--input-color0);
+    --outline-color: var(--outline-color0);
+    --mark-color: var(--mark-color0);
+    --special-color: var(--special-color0);
+    --special-bg-color: var(--special-bg-color0);
+    --special-text-color: var(--special-text-color0);
+    --special-shadow-color: var(--special-shadow-color0);
+    --special-mark-color: var(--special-mark-color0);
+    --light-color: var(--light-color0);
+    --dark-color: var(--dark-color0);
+    --text-color-rgb: var(--text-color-rgb0);
+    --bg-color-rgb: var(--bg-color-rgb0);
+    --subtle-color-rgb: var(--subtle-color-rgb0);
+    --special-color-rgb: var(--special-color-rgb0);
+    --special-text-color-rgb: var(--special-text-color-rgb0);
+    --special-bg-color-rgb: var(--special-bg-color-rgb0);
+    --shadow-color-rgb: var(--shadow-color-rgb0);
+    --special-shadow-color-rgb: var(--special-shadow-color-rgb0);
+    --outline-color-rgb: var(--outline-color-rgb0);
+    --dark-color-rgb: var(--dark-color-rgb0);
+    --light-color-rgb: var(--light-color-rgb0);
+  }
+  html[data-nu-scheme-is="dark"][data-nu-contrast-is="no-preference"] #preview {
+    --bg-color: var(--bg-color1);
+    --text-color: var(--text-color1);
+    --text-soft-color: var(--text-soft-color1);
+    --text-strong-color: var(--text-strong-color1);
+    --subtle-color: var(--subtle-color1);
+    --border-color: var(--border-color1);
+    --shadow-color: var(--shadow-color1);
+    --input-color: var(--input-color1);
+    --outline-color: var(--outline-color1);
+    --mark-color: var(--mark-color1);
+    --special-color: var(--special-color1);
+    --special-bg-color: var(--special-bg-color1);
+    --special-text-color: var(--special-text-color1);
+    --special-shadow-color: var(--special-shadow-color1);
+    --special-mark-color: var(--special-mark-color1);
+    --light-color: var(--light-color1);
+    --dark-color: var(--dark-color1);
+    --text-color-rgb: var(--text-color-rgb1);
+    --bg-color-rgb: var(--bg-color-rgb1);
+    --subtle-color-rgb: var(--subtle-color-rgb1);
+    --special-color-rgb: var(--special-color-rgb1);
+    --special-text-color-rgb: var(--special-text-color-rgb1);
+    --special-bg-color-rgb: var(--special-bg-color-rgb1);
+    --shadow-color-rgb: var(--shadow-color-rgb1);
+    --special-shadow-color-rgb: var(--special-shadow-color-rgb1);
+    --outline-color-rgb: var(--outline-color-rgb1);
+    --dark-color-rgb: var(--dark-color-rgb1);
+    --light-color-rgb: var(--light-color-rgb1);
+  }
+  html[data-nu-scheme-is="light"][data-nu-contrast-is="more"] #preview {
+    --bg-color: var(--bg-color2);
+    --text-color: var(--text-color2);
+    --text-soft-color: var(--text-soft-color2);
+    --text-strong-color: var(--text-strong-color2);
+    --subtle-color: var(--subtle-color2);
+    --border-color: var(--border-color2);
+    --shadow-color: var(--shadow-color2);
+    --input-color: var(--input-color2);
+    --outline-color: var(--outline-color2);
+    --mark-color: var(--mark-color2);
+    --special-color: var(--special-color2);
+    --special-bg-color: var(--special-bg-color2);
+    --special-text-color: var(--special-text-color2);
+    --special-shadow-color: var(--special-shadow-color2);
+    --special-mark-color: var(--special-mark-color2);
+    --light-color: var(--light-color2);
+    --dark-color: var(--dark-color2);
+    --text-color-rgb: var(--text-color-rgb2);
+    --bg-color-rgb: var(--bg-color-rgb2);
+    --subtle-color-rgb: var(--subtle-color-rgb2);
+    --special-color-rgb: var(--special-color-rgb2);
+    --special-text-color-rgb: var(--special-text-color-rgb2);
+    --special-bg-color-rgb: var(--special-bg-color-rgb2);
+    --shadow-color-rgb: var(--shadow-color-rgb2);
+    --special-shadow-color-rgb: var(--special-shadow-color-rgb2);
+    --outline-color-rgb: var(--outline-color-rgb2);
+    --dark-color-rgb: var(--dark-color-rgb2);
+    --light-color-rgb: var(--light-color-rgb2);
+  }
+  html[data-nu-scheme-is="dark"][data-nu-contrast-is="more"] #preview {
+    --bg-color: var(--bg-color3);
+    --text-color: var(--text-color3);
+    --text-soft-color: var(--text-soft-color3);
+    --text-strong-color: var(--text-strong-color3);
+    --subtle-color: var(--subtle-color3);
+    --border-color: var(--border-color3);
+    --shadow-color: var(--shadow-color3);
+    --input-color: var(--input-color3);
+    --outline-color: var(--outline-color3);
+    --mark-color: var(--mark-color3);
+    --special-color: var(--special-color3);
+    --special-bg-color: var(--special-bg-color3);
+    --special-text-color: var(--special-text-color3);
+    --special-shadow-color: var(--special-shadow-color3);
+    --special-mark-color: var(--special-mark-color3);
+    --light-color: var(--light-color3);
+    --dark-color: var(--dark-color3);
+    --text-color-rgb: var(--text-color-rgb3);
+    --bg-color-rgb: var(--bg-color-rgb3);
+    --subtle-color-rgb: var(--subtle-color-rgb3);
+    --special-color-rgb: var(--special-color-rgb3);
+    --special-text-color-rgb: var(--special-text-color-rgb3);
+    --special-bg-color-rgb: var(--special-bg-color-rgb3);
+    --shadow-color-rgb: var(--shadow-color-rgb3);
+    --special-shadow-color-rgb: var(--special-shadow-color-rgb3);
+    --outline-color-rgb: var(--outline-color-rgb3);
+    --dark-color-rgb: var(--dark-color-rgb3);
+    --light-color-rgb: var(--light-color-rgb3);
+  }
+  </style>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600&display=swap"
     rel="stylesheet">
@@ -38,5 +161,14 @@
 <body>
 <div id="app"></div>
 <script type="module" src="/src/main.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172527749-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172527749-1');
+</script>
 </body>
 </html>

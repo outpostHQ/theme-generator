@@ -1,8 +1,10 @@
 <template>
   <nu-block
+    id="preview"
     :is-show="show || null"
     interactive="no"
     fill="#clear||#clear :show[#dark.50]"
+    theme
     place="fixed cover"
   >
     <nu-card
@@ -12,7 +14,7 @@
       radius="2r left"
       clear
       border="top left bottom"
-      fill="subtle"
+      fill="#subtle"
       height="100wh - 4x"
       width="41x||40x (100% - 6x) 78x"
       transition="move"
@@ -21,13 +23,6 @@
       flow="column"
       z="0"
     >
-      <Theme
-        :hue="props.theme.hue"
-        :accentHue="props.theme.accentHue"
-        :saturation="props.theme.saturation"
-        :pastel="props.theme.pastel"
-        :mod="props.theme.mod"
-      />
       <nu-flow>
         <nu-pane content="space-between">
           <nu-h2>Preview</nu-h2>
@@ -180,7 +175,7 @@
 </template>
 
 <script setup>
-import { defineProps, computed, ref } from 'vue';
+import { defineProps, computed, ref, watch } from 'vue';
 import LZString from 'lz-string';
 import ThemeSwitch from './ThemeSwitch.vue';
 import Theme from './Theme.vue';

@@ -3,15 +3,15 @@
     fill="#white" color="#black"
     border="n" padding="0 .5x" content="center start" radius="8r 2r 2r 8r" @click="copyColor">
     <nu-circle
-      v-if="props.data.rawRgba[3] === 1" :fill="props.data.rgba"
+      v-if="props.data.rawRgba[3] === 1" :fill="`@${props.data.name}-color${props.index}`"
       border="#lightgrey 1bw" size="4x"
     />
     <nu-circle
       v-else image="transparent url(/img/contrast-bg.png) repeat 3px 0% / 8px 8px" box="y"
       border="#lightgrey 1bw" size="4x"
     >
-      <nu-block :fill="props.data.rgb" place="left" height="100%" width="50%" radius="99rem 0 0 99rem"/>
-      <nu-block :fill="props.data.rgba" place="right" height="100%" width="50%" radius="0 99rem 99rem 0"/>
+      <nu-block :fill="`@${props.data.name}-color-opaque${props.index}`" place="left" height="100%" width="50%" radius="99rem 0 0 99rem"/>
+      <nu-block :fill="`@${props.data.name}-color${props.index}`" place="right" height="100%" width="50%" radius="0 99rem 99rem 0"/>
     </nu-circle>
     <nu-tooltip text="nowrap" size="sm">
       <nu-heading level="6">
@@ -112,6 +112,7 @@ const TOOLTIP_MAP = {
 const props = defineProps({
   data: Object,
   notation: String,
+  index: Number,
 });
 const copied = ref(false);
 
