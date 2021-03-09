@@ -1,5 +1,5 @@
 {
-  "name": "theme-builder",
+  "name": "numl-theme-generator",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
