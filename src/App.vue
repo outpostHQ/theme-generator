@@ -290,7 +290,7 @@
           </nu-flow>
 
           <nu-block>
-            <nu-btn clear to="!https://github.com/numldesign/theme-builder">
+            <nu-btn clear to="!https://github.com/numldesign/theme-generator">
               <nu-icon name="logo-github"/>
               Source Code
             </nu-btn>

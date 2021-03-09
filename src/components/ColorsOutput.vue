@@ -1,7 +1,6 @@
 <template>
   <nu-flow gap>
     <nu-pane content="space-between">
-      <nu-attrs for="btn" padding="1x 2x"/>
       <nu-btngroup use-radiogroup :value="notation" @input="notation = $event.detail" inline>
         <nu-btn value="rgba">Rgba</nu-btn>
         <nu-btn value="hex">Hex</nu-btn>
