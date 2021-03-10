@@ -1,61 +1,59 @@
 <template>
-  <focus-trap v-model="isOpen">
-    <nu-block
-      nu-overlay
-      :is-open="isOpen || null"
-      opacity="0 :open[1]"
-      transition="opacity"
-      interactive="n :open[y]"
-      place="fixed cover"
-      fill="#black.50"
-      z="top">
-      <nu-card
-        place="inside" width="40x" gap="2x"
-        scale="^overlay .8 :open[1]"
-        move="^overlay 0 -6x :open[0 0]"
-        transition="move, scale, shadow"
-        radius="2r" shadow="^overlay 0 2x 6x #special-shadow.0 :open[0 2x 6x #special-shadow.50]"
-      >
-        <nu-heading level="4">Insert color:</nu-heading>
-        <nu-block>
-          You can insert any valid CSS-color: named, hex, rgb, rgba, hsl, etc.
+  <nu-block
+    nu-overlay
+    :is-open="isOpen || null"
+    opacity="0 :open[1]"
+    transition="opacity"
+    interactive="n :open[y]"
+    place="fixed cover"
+    fill="#black.50"
+    z="top">
+    <nu-card
+      place="inside" width="40x" gap="2x"
+      scale="^overlay .8 :open[1]"
+      move="^overlay 0 -6x :open[0 0]"
+      transition="move, scale, shadow"
+      radius="2r" shadow="^overlay 0 2x 6x #special-shadow.0 :open[0 2x 6x #special-shadow.50]"
+    >
+      <nu-heading level="4">Insert color:</nu-heading>
+      <nu-block>
+        You can insert any valid CSS-color: named, hex, rgb, rgba, hsl, etc.
+      </nu-block>
+      <nu-pane>
+        <nu-input
+          width="auto" grow="1"
+          :value="color"
+          @input="setValue($event.detail)" @keydown.enter="() => isValid && resolve()"
+          :success="isValid || null"
+          placeholder="red #f93 rgb(258,132,42)"
+        >
+          <input ref="inputRef"/>
+        </nu-input>
+        <nu-card
+          width="5x" height="5x" padding="0" radius
+          :fill="hue != null && saturation != null ? `hue(${hue} ${saturation} special)` : '#grey'"/>
+      </nu-pane>
+      <nu-grid columns="1pr 1pr" gap>
+        <nu-block text="sb">
+          Hue: {{ hue != null && hue === hue ? hue : '–' }}
         </nu-block>
-        <nu-pane>
-          <nu-input
-            width="auto" grow="1"
-            :value="color"
-            @input="setValue($event.detail)" @keydown.enter="() => isValid && resolve()"
-            :success="isValid || null"
-            placeholder="red #f93 rgb(258,132,42)"
-          >
-            <input ref="inputRef"/>
-          </nu-input>
-          <nu-card
-            width="5x" height="5x" padding="0" radius
-            :fill="hue != null && saturation != null ? `hue(${hue} ${saturation} special)` : '#grey'"/>
-        </nu-pane>
-        <nu-grid columns="1pr 1pr" gap>
-          <nu-block text="sb">
-            Hue: {{ hue != null && hue === hue ? hue : '–' }}
-          </nu-block>
-          <nu-block text="sb">
-            Saturation: {{ saturation != null && saturation === saturation ? saturation : '–' }}
-          </nu-block>
-        </nu-grid>
-        <nu-card warning padding=".5x 1x" size="sm" text="sb">
-          <b>Hue</b> and <b>Saturation</b> are calculated in <b>HSLuv</b> color space and can be very different from values of <b>HSL</b>.
-        </nu-card>
-        <nu-grid columns="1pr 1pr" gap>
-          <nu-btn special @tap="resolve" :disabled="!isValid">
-            Submit
-          </nu-btn>
-          <nu-btn @tap="reject">
-            Cancel
-          </nu-btn>
-        </nu-grid>
+        <nu-block text="sb">
+          Saturation: {{ saturation != null && saturation === saturation ? saturation : '–' }}
+        </nu-block>
+      </nu-grid>
+      <nu-card warning padding=".5x 1x" size="sm" text="sb">
+        <b>Hue</b> and <b>Saturation</b> are calculated in <b>HSLuv</b> color space and can be very different from values of <b>HSL</b>.
       </nu-card>
-    </nu-block>
-  </focus-trap>
+      <nu-grid columns="1pr 1pr" gap>
+        <nu-btn special @tap="resolve" :disabled="!isValid">
+          Submit
+        </nu-btn>
+        <nu-btn @tap="reject">
+          Cancel
+        </nu-btn>
+      </nu-grid>
+    </nu-card>
+  </nu-block>
 </template>
 
 <script>

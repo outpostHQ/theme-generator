@@ -10,8 +10,6 @@
   "dependencies": {
     "clipboard-copy": "^4.0.1",
     "file-saver": "^2.0.5",
-    "focus-trap": "^6.3.0",
-    "focus-trap-vue": "^3.1.0",
     "numl": "^1.0.0-beta.22",
     "vue": "^3.0.5"
   },
