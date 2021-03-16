@@ -67,26 +67,42 @@ ${themeMarkup.split('\n').map(s => `  ${s}`).join('\n')}
 
   <nu-h5>Various widgets</nu-h5>
 
-  <nu-radiogroup value="one" gap="2x">
-    <nu-pane>
-      <nu-radio value="one"></nu-radio>
-      <nu-label>One</nu-label>
-    </nu-pane>
-    <nu-pane>
-      <nu-radio value="two"></nu-radio>
-      <nu-label>Two</nu-label>
-    </nu-pane>
-    <nu-pane>
-      <nu-radio value="three"></nu-radio>
-      <nu-label>Three</nu-label>
-    </nu-pane>
-  </nu-radiogroup>
+  <nu-pane gap="2x">
+    <nu-radiogroup value="one" gap="2x">
+      <nu-pane>
+        <nu-radio value="one"></nu-radio>
+        <nu-label>1</nu-label>
+      </nu-pane>
+      <nu-pane>
+        <nu-radio value="two"></nu-radio>
+        <nu-label>2</nu-label>
+      </nu-pane>
+    </nu-radiogroup>
+    <nu-line orient="v"></nu-line>
+    <nu-radiogroup value="three" gap="2x" disabled>
+      <nu-pane>
+        <nu-radio value="three"></nu-radio>
+        <nu-label>3</nu-label>
+      </nu-pane>
+      <nu-pane>
+        <nu-radio value="four"></nu-radio>
+        <nu-label>4</nu-label>
+      </nu-pane>
+    </nu-radiogroup>
+  </nu-pane>
 
   <nu-pane gap="2x">
     <nu-switch></nu-switch>
     <nu-switch checked></nu-switch>
+    <nu-switch disabled></nu-switch>
+    <nu-switch checked disabled></nu-switch>
+  </nu-pane>
+
+  <nu-pane gap="2x">
     <nu-checkbox></nu-checkbox>
     <nu-checkbox checked></nu-checkbox>
+    <nu-checkbox disabled></nu-checkbox>
+    <nu-checkbox checked disabled></nu-checkbox>
   </nu-pane>
 
   <nu-listbox value="one">
@@ -116,8 +132,12 @@ ${themeMarkup.split('\n').map(s => `  ${s}`).join('\n')}
   <nu-progressbar></nu-progressbar>
 
   <nu-slider value="50"></nu-slider>
+  <nu-slider value="50" disabled></nu-slider>
 
-  <nu-input placeholder="Placeholder"></nu-input>
+  <nu-input placeholder="Default input"></nu-input>
+  <nu-input placeholder="Disabled default input" disabled></nu-input>
+  <nu-input placeholder="Special input" special></nu-input>
+  <nu-input placeholder="Disabled special input" special disabled></nu-input>
 
   <nu-datepicker mode="range"></nu-datepicker>
 
