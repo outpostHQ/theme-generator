@@ -39,12 +39,14 @@
             </nu-block>
           </nu-flow>
 
-          <nu-tablist
-            :value="section" @input="section = $event.detail"
-            border="bottom center 2bw" size="h3|h4" text="sb">
-            <nu-tab value="colors">Colors</nu-tab>
-            <nu-tab value="properties">Properties</nu-tab>
-          </nu-tablist>
+          <nu-heading level="3" size="h3|h4" padding="2x top">Options</nu-heading>
+
+<!--          <nu-tablist-->
+<!--            :value="section" @input="section = $event.detail"-->
+<!--            border="bottom center 2bw" size="h3|h4" text="sb">-->
+<!--            <nu-tab value="colors">Colors</nu-tab>-->
+<!--            <nu-tab value="properties">Properties</nu-tab>-->
+<!--          </nu-tablist>-->
 
           <nu-flow v-show="section === 'properties'">
             <nu-h5>Coming soon...</nu-h5>
@@ -228,36 +230,36 @@
               </nu-block>
             </nu-pane>
           </nu-flow>
-        </nu-flow>
 
-        <nu-h3>Output</nu-h3>
+          <nu-heading level="3" size="h3|h4" padding="2x top">Output</nu-heading>
 
-        <nu-progressbar v-if="loading" />
+          <nu-progressbar v-if="loading" />
 
-        <nu-flow v-else gap>
-          <nu-attrs for="tab" text="sb nowrap"/>
-          <nu-pane content="space-between" border="bottom inside">
-            <nu-tablist
-              :value="outputTab"
-              @input="outputTab = $event.detail"
-            >
-              <nu-tab value="css">CSS</nu-tab>
-              <nu-tab value="colors">Colors</nu-tab>
-              <nu-tab value="numl">Numl</nu-tab>
-            </nu-tablist>
-          </nu-pane>
+          <nu-flow v-else gap>
+            <nu-attrs for="tab" text="sb nowrap"/>
+            <nu-pane content="space-between" border="bottom inside">
+              <nu-tablist
+                :value="outputTab"
+                @input="outputTab = $event.detail"
+              >
+                <nu-tab value="css">CSS</nu-tab>
+                <nu-tab value="colors">Colors</nu-tab>
+                <nu-tab value="numl">Numl</nu-tab>
+              </nu-tablist>
+            </nu-pane>
 
-          <ColorsOutput v-if="outputTab === 'colors'" :data="colorData"/>
-          <CSSOutput v-if="outputTab === 'css'" :data="colorData"/>
-          <NumlOutput
-            v-if="outputTab === 'numl'"
-            :data="colorData"
-            :hue="hue"
-            :accentHue="toneType === 'duo' ? accentHue : null"
-            :saturation="saturation"
-            :pastel="isPastel"
-            :mod="mod"
-          />
+            <ColorsOutput v-if="outputTab === 'colors'" :data="colorData"/>
+            <CSSOutput v-if="outputTab === 'css'" :data="colorData"/>
+            <NumlOutput
+              v-if="outputTab === 'numl'"
+              :data="colorData"
+              :hue="hue"
+              :accentHue="toneType === 'duo' ? accentHue : null"
+              :saturation="saturation"
+              :pastel="isPastel"
+              :mod="mod"
+            />
+          </nu-flow>
         </nu-flow>
 
         <nu-line/>
