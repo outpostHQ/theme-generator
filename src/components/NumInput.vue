@@ -7,6 +7,7 @@
       <nu-icon size="md" name="remove-outline"></nu-icon>
     </nu-btn>
     <nu-numinput
+      :id="id"
       :value="props.value"
       @input="$emit('input', $event.detail)"
       width="4.5x" padding="0 .5x"
@@ -27,6 +28,7 @@
 import { defineProps } from 'vue';
 
 const props = defineProps({
+  id: String,
   value: Number,
   min: {
     default: 0,

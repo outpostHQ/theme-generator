@@ -99,8 +99,11 @@
                 <nu-flow gap=".5x">
                   <nu-pane content="space-between">
                     <nu-pane>
-                      <nu-label>{{ toneType === 'duo' ? 'Main ' : '' }}Hue:</nu-label>
+                      <nu-label for="hue">
+                        {{ toneType === 'duo' ? 'Main ' : '' }}Hue:
+                      </nu-label>
                       <NumInput
+                        id="hue"
                         :value="hue"
                         @input="hue = $event"
                         :min="0"
@@ -126,8 +129,11 @@
                 <nu-flow v-show="toneType === 'duo'" gap=".5x">
                   <nu-pane content="space-between">
                     <nu-pane>
-                      <nu-label>Accent Hue:</nu-label>
+                      <nu-label for="accent-hue">
+                        Accent Hue:
+                      </nu-label>
                       <NumInput
+                        id="accent-hue"
                         :value="accentHue"
                         @input="accentHue = $event"
                         :min="0"
@@ -140,7 +146,7 @@
                     </nu-btn>
                   </nu-pane>
                   <nu-slider
-                    id="hue"
+                    id="accent-hue"
                     :value="accentHue"
                     min="0"
                     max="359"
@@ -152,13 +158,17 @@
 
                 <nu-flow gap=".5x">
                   <nu-pane>
-                    <nu-label>Saturation:</nu-label>
+                    <nu-label for="saturation">
+                      Saturation:
+                    </nu-label>
                     <NumInput
+                      id="saturation"
                       :value="saturation"
                       @input="saturation = $event"
                     />
                   </nu-pane>
                   <nu-slider
+                    id="saturation"
                     :value="saturation"
                     min="0"
                     max="100"
