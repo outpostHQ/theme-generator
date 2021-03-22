@@ -178,7 +178,7 @@
         <nu-h5>Code converter</nu-h5>
 
         <nu-card padding="0" overflow="auto">
-          <nu-code ref="snippet" padding="1x 2x" :value="codeExample"></nu-code>
+          <nu-code padding="1x 2x" :value="codeExample"></nu-code>
         </nu-card>
 
         <nu-markdown :value="markdownExample"></nu-markdown>
