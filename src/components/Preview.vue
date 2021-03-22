@@ -165,6 +165,8 @@
 
         <nu-datepicker mode="range" />
 
+        <nu-h5>Areas</nu-h5>
+
         <nu-card fill="#dark" color="#light">
           Dark area
         </nu-card>
@@ -172,6 +174,14 @@
         <nu-card fill="#light" color="#dark">
           Light area
         </nu-card>
+
+        <nu-h5>Code converter</nu-h5>
+
+        <nu-card padding="0" overflow="auto">
+          <nu-code ref="snippet" padding="1x 2x" :value="codeExample"></nu-code>
+        </nu-card>
+
+        <nu-markdown :value="markdownExample"></nu-markdown>
       </nu-flow>
 
       <nu-btn
@@ -195,7 +205,7 @@
 </template>
 
 <script setup>
-import { defineProps, computed, ref, watch } from 'vue';
+import { defineProps, computed, ref } from 'vue';
 import LZString from 'lz-string';
 import ThemeSwitch from './ThemeSwitch.vue';
 import Theme from './Theme.vue';
@@ -219,4 +229,17 @@ const replHash = computed(() => {
 });
 // Original: https://numl.design/repl#6038e9246cd202483f3a87a4
 const replLink = computed(() => `!https://numl.design/repl#${replHash.value}`);
+const codeExample = `var str = 'String';
+var num = 1234;
+var regexp = /^RegExp$/
+
+function(arg) {
+  return arg * 2;
+}`;
+const markdownExample = `##### Markdown Converter
+
+Paragraph text with **bold** and *italic* text.
+
+- List item 1
+- List item 2`;
 </script>

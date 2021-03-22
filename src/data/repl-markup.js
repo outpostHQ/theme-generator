@@ -141,6 +141,8 @@ ${themeMarkup.split('\n').map(s => `  ${s}`).join('\n')}
 
   <nu-datepicker mode="range"></nu-datepicker>
 
+  <nu-h5>Areas</nu-h5>
+
   <nu-card fill="#dark" color="#light">
     Dark area
   </nu-card>
@@ -148,4 +150,31 @@ ${themeMarkup.split('\n').map(s => `  ${s}`).join('\n')}
   <nu-card fill="#light" color="#dark">
     Light area
   </nu-card>
+
+  <nu-h5>Code converter</nu-h5>
+
+  <nu-card padding="0" overflow="auto">
+    <nu-code padding="1x 2x">
+      <textarea>
+        var str = 'String';
+        var num = 1234;
+        var regexp = /^RegExp$/
+
+        function(arg) {
+          return arg * 2;
+        }
+      </textarea>
+    </nu-code>
+  </nu-card>
+
+  <nu-markdown>
+    <textarea>
+      ##### Markdown Heading
+
+      Paragraph text with **bold** and *italic* text.
+
+      - List item 1
+      - List item 2
+    </textarea>
+  </nu-markdown>
 </nu-card>`;
