@@ -54,6 +54,18 @@ ${themeMarkup.split('\n').map(s => `  ${s}`).join('\n')}
   </nu-flow>
 
   <nu-flow gap>
+    <nu-h5>Clear button states</nu-h5>
+    <nu-pane flow="row wrap">
+      <nu-btn clear use-action="n">Default</nu-btn>
+      <nu-btn clear use-action="n" is-hover mark>Hover</nu-btn>
+      <nu-btn clear use-action="n" is-active>Pressed</nu-btn>
+      <nu-btn clear use-action="n" is-pressed>Toggled</nu-btn>
+      <nu-btn clear use-action="n" outline="focus" is-focus>Focused</nu-btn>
+      <nu-btn clear use-action="n" disabled>Disabled</nu-btn>
+    </nu-pane>
+  </nu-flow>
+
+  <nu-flow gap>
     <nu-h5>Special button states</nu-h5>
     <nu-pane flow="row wrap">
       <nu-btn special use-action="n">Default</nu-btn>

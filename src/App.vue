@@ -20,8 +20,8 @@
       <nu-flow width="(100% - 42x)||100%" gap="2x" padding="2x">
         <nu-flow gap="1x">
           <nu-pane items="baseline start">
-            <nu-h1 size="h2|h3">CSS Theme Generator</nu-h1>
-            <nu-el size="lg" text="b">v1.0.0</nu-el>
+            <nu-h1 size="h3|h4">CSS Color Theme Generator</nu-h1>
+            <nu-el size="lg" text="b">v1.0.1</nu-el>
           </nu-pane>
           <nu-flow text="sb">
             <nu-block size="h4">
@@ -310,7 +310,7 @@
         </nu-pane>
       </nu-flow>
 
-      <Preview v-show="themeIsReady" :theme="{
+      <Preview :disabled="!themeIsReady" :theme="{
         hue: hue,
         accentHue: toneType === 'duo' ? accentHue : null,
         saturation: saturation,
