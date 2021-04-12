@@ -7,7 +7,7 @@
     interactive="n :open[y]"
     place="fixed cover"
     fill="#black.50"
-    z="top">
+    z="front">
     <nu-card
       place="inside" width="40x" gap="2x"
       scale="^overlay .8 :open[1]"

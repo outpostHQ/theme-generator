@@ -141,10 +141,9 @@ ${themeMarkup.split('\n').map(s => `  ${s}`).join('\n')}
     <nu-menuitem>Menuitem 3</nu-menuitem>
   </nu-menu>
 
-  <nu-progressbar></nu-progressbar>
-
   <nu-slider value="50"></nu-slider>
   <nu-slider value="50" disabled></nu-slider>
+  <nu-slider2d min="0 0" max="100 100" step="1 1" value="50 50"></nu-slider2d>
 
   <nu-input placeholder="Default input"></nu-input>
   <nu-input placeholder="Disabled default input" disabled></nu-input>
@@ -152,6 +151,17 @@ ${themeMarkup.split('\n').map(s => `  ${s}`).join('\n')}
   <nu-input placeholder="Disabled special input" special disabled></nu-input>
 
   <nu-datepicker mode="range"></nu-datepicker>
+
+  <nu-h5>Indicators</nu-h5>
+
+  <nu-block>
+    <nu-spin></nu-spin> Loading...
+  </nu-block>
+
+  <nu-ph></nu-ph>
+
+  <nu-progressbar value="50"></nu-progressbar>
+  <nu-progressbar></nu-progressbar>
 
   <nu-h5>Areas</nu-h5>
 

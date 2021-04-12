@@ -21,7 +21,7 @@
         <nu-flow gap="1x">
           <nu-pane items="baseline start">
             <nu-h1 size="h3|h4">CSS Color Theme Generator</nu-h1>
-            <nu-el size="lg" text="b">v1.0.1</nu-el>
+            <nu-el size="lg" text="b">v1.1.0</nu-el>
           </nu-pane>
           <nu-flow text="sb">
             <nu-block size="h4">

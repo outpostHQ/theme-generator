@@ -32,32 +32,32 @@
       </nu-flow>
 
       <nu-flow
-        v-if="props.disabled"
+        v-show="props.disabled"
         gap="2x" overflow="auto hidden" padding="2x" space="0 2x 2x 2x" grow="1">
-        <Placeholder size="h4" width="50%"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder size="h4" width="50%"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder size="h4" width="50%"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder size="h4" width="50%"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder opacity=".5"/>
-        <Placeholder opacity=".5"/>
+        <nu-ph static size="h4" width="50%" opacity=".25"/>
+        <nu-ph static/>
+        <nu-ph static/>
+        <nu-ph static/>
+        <nu-ph static/>
+        <nu-ph static size="h4" width="50%" opacity=".25"/>
+        <nu-ph static/>
+        <nu-ph static/>
+        <nu-ph static/>
+        <nu-ph static/>
+        <nu-ph static size="h4" width="50%" opacity=".25"/>
+        <nu-ph static/>
+        <nu-ph static/>
+        <nu-ph static/>
+        <nu-ph static/>
+        <nu-ph static size="h4" width="50%" opacity=".25"/>
+        <nu-ph static/>
+        <nu-ph static/>
+        <nu-ph static/>
+        <nu-ph static/>
       </nu-flow>
 
       <nu-flow
-        v-if="!props.disabled"
+        v-show="!props.disabled"
         gap="2x" overflow="hidden auto" padding="2x" space="0 2x 2x 2x" grow="1">
         <nu-pane content="space-between">
           <nu-h5>Numl.Design</nu-h5>
@@ -193,10 +193,9 @@
           <nu-menuitem>Menuitem 3</nu-menuitem>
         </nu-menu>
 
-        <nu-progressbar/>
-
         <nu-slider value="50"></nu-slider>
         <nu-slider value="50" disabled></nu-slider>
+        <nu-slider2d min="0 0" max="100 100" step="1 1" value="50 50"></nu-slider2d>
 
         <nu-input placeholder="Default input"/>
         <nu-input placeholder="Disabled default input" disabled/>
@@ -204,6 +203,17 @@
         <nu-input placeholder="Disabled special input" special disabled/>
 
         <nu-datepicker mode="range"/>
+
+        <nu-h5>Indicators</nu-h5>
+
+        <nu-block>
+          <nu-spin/> Loading...
+        </nu-block>
+
+        <nu-ph></nu-ph>
+
+        <nu-progressbar value="50"/>
+        <nu-progressbar/>
 
         <nu-h5>Areas</nu-h5>
 
